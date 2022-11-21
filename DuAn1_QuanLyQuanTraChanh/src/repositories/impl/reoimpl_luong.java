@@ -50,7 +50,8 @@ public class reoimpl_luong implements reo_luong{
     }
 
     @Override
-    public boolean insert(luong lg) {try {
+    public boolean insert(luong lg) {
+        try {
             Connection conn=jdbcUtil.getConnection();
             String insert = "insert into LUONG" + "(MaLuong,MucLuong,NgayQuyDinh,Phucap,Thuong)" + "Values(?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(insert);

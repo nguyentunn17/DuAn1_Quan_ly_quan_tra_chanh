@@ -51,9 +51,9 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel6" pref="79" max="32767" attributes="0"/>
                   <Component id="jLabel5" max="32767" attributes="0"/>
-                  <Component id="jLabel4" max="32767" attributes="0"/>
                   <Component id="jLabel3" max="32767" attributes="0"/>
                   <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -68,8 +68,8 @@
                               <Component id="txt_phucap" max="32767" attributes="0"/>
                               <Component id="txt_thuong" pref="149" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txt_maluong" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
                           <Component id="txt_mucluong" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
+                          <Component id="txt_maluong" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
