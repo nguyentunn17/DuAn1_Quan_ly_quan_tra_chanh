@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package repositories;
 
-/**
- *
- * @author Hung
- */
+import domainmodels.KhuyenMai;
+import java.util.ArrayList;
+
 public interface IKhuyenMaiRepository {
-    
+
+    ArrayList<KhuyenMai> read();
+
+    void create(KhuyenMai km);
+
+    void update(KhuyenMai km, String id);
 }
