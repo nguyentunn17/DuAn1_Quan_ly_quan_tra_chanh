@@ -3,15 +3,6 @@ package domainmodels;
 import java.util.Date;
 
 public class KhuyenMai {
-//    Id  UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
-//	Ma VARCHAR(20) UNIQUE,
-//	Ten NVARCHAR(50) DEFAULT NULL,
-//	HinhThuc NVARCHAR(50) DEFAULT NULL,
-//	GiaTri DECIMAL(20,0) DEFAULT 0,
-//	NgayBatDau DATETIME DEFAULT NULL,
-//	NgayKetThuc DATETIME DEFAULT NULL,
-//	TrangThai INT DEFAULT 0,
-//	DonGiaKhiGiam DECIMAL(20,0) DEFAULT 0
 
     private String id;
     private String ma;

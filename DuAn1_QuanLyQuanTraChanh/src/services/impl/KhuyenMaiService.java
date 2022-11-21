@@ -1,7 +1,9 @@
 
 package services.impl;
 
+import services.IKhuyenMaiService;
 
-public class KhuyenMaiService {
+
+public class KhuyenMaiService implements IKhuyenMaiService{
     
 }
