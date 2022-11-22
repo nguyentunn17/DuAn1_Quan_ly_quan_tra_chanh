@@ -42,7 +42,7 @@ private CaSV csv = new CaSVimpl();
     private ca getdata(){
        ca c = new ca();
        String maca = txt_maca.getText().trim();
-       String tenca = txt_time.getText().trim();
+       String tenca = txt_tenca.getText().trim();
        String ngaythang = txt_ngaythang.getText().trim();
        int time=Integer.parseInt(txt_time.getText().trim());
        if (maca.length() == 0 || tenca.length() == 0 || ngaythang.length() == 0) {
