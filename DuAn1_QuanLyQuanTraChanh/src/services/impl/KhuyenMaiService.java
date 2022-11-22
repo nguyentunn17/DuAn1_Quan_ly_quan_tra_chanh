@@ -8,7 +8,7 @@ import services.IKhuyenMaiService;
 
 public class KhuyenMaiService implements IKhuyenMaiService {
 
-    private IKhuyenMaiRepository khuyenMaiRepository;
+    private final IKhuyenMaiRepository khuyenMaiRepository;
 
     public KhuyenMaiService() {
         this.khuyenMaiRepository = new KhuyenMaiRepository();
@@ -29,4 +29,19 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         this.khuyenMaiRepository.update(km, id);
     }
 
+    @Override
+    public ArrayList<KhuyenMai> timKiem(String id) {
+        return this.khuyenMaiRepository.timKiem(id);
+    }
+
+    @Override
+    public ArrayList<KhuyenMai> trangThai(String id) {
+        ArrayList<KhuyenMai> list = new ArrayList<>();
+        for (KhuyenMai khuyenMai : this.khuyenMaiRepository.read()) {
+            if (khuyenMai.getTrangThai() == Integer.parseInt(id)) {
+                list.add(khuyenMai);
+            }
+        }
+        return list;
+    }
 }

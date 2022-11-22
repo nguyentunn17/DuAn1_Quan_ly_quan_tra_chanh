@@ -84,4 +84,34 @@ public class KhuyenMaiRepository implements IKhuyenMaiRepository {
         }
     }
 
+    @Override
+    public ArrayList<KhuyenMai> timKiem(String idTimKiem) {
+        ArrayList<KhuyenMai> listkm = new ArrayList<>();
+        try {
+            Connection conn = utilities.jdbcUtil.getConnection();
+            String query = "SELECT * FROM KHUYENMAI where ten like ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, idTimKiem);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String ma = rs.getString("ma");
+                String ten = rs.getString("ten");
+                String hinhThuc = rs.getString("hinhthuc");
+                Double giaTri = rs.getDouble("giatri");
+                Date ngayBatDau = rs.getDate("ngayBatDau");
+                Date ngayKetThuc = rs.getDate("ngayKetThuc");
+                int trangThai = rs.getInt("trangThai");
+                Double giaKhiGiam = rs.getDouble("dongiakhigiam");
+                KhuyenMai km = new KhuyenMai(id, ma, ten, hinhThuc, giaTri, ngayBatDau, ngayKetThuc, trangThai, giaKhiGiam);
+                listkm.add(km);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(KhuyenMaiRepository.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return listkm;
+    }
+
 }

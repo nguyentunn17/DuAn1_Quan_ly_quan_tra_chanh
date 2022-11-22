@@ -57,13 +57,24 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
         }
         return km;
     }
-    private String getId(String ma){
+
+    private String getId(String ma) {
         for (KhuyenMai khuyenMai : this.khuyenMaiService.read()) {
-            if(khuyenMai.getMa().equals(ma)){
+            if (khuyenMai.getMa().equals(ma)) {
                 return khuyenMai.getId();
             }
         }
         return null;
+    }
+
+    private void newForm() {
+        txt_ma.setText("");
+        txt_mucgiam.setText("");
+        txt_ten.setText("");
+        cbb_hinhthuc.setSelectedIndex(0);
+        cbb_trangthai.setSelectedIndex(0);
+        dsc_ngaybatdau.setDate(null);
+        dsc_ngayketthuc.setDate(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -95,12 +106,12 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txt_timkiem = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbb_loctt = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_sanpham = new javax.swing.JTable();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbb_lochinhthuc = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -134,6 +145,11 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
         cbb_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt động", "Ngừng hoạt động" }));
 
         btn_new.setText("Mới");
+        btn_new.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_newActionPerformed(evt);
+            }
+        });
 
         btn_save.setText("Lưu");
         btn_save.addActionListener(new java.awt.event.ActionListener() {
@@ -259,9 +275,20 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
 
         jLabel8.setText("Tìm kiếm");
 
+        txt_timkiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_timkiemKeyReleased(evt);
+            }
+        });
+
         jLabel9.setText("Trạng thái");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt động", "Ngừng hoạt động" }));
+        cbb_loctt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Hoạt động", "Ngừng hoạt động" }));
+        cbb_loctt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbb_locttActionPerformed(evt);
+            }
+        });
 
         tb_sanpham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -288,7 +315,7 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
 
         jLabel10.setText("Hình thức");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo %", "Theo giá tiền" }));
+        cbb_lochinhthuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo %", "Theo giá tiền" }));
 
         jLabel11.setText("Tìm kiếm");
 
@@ -313,11 +340,11 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbb_loctt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbb_lochinhthuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,9 +359,9 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbb_loctt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbb_lochinhthuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -414,6 +441,7 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
@@ -448,20 +476,37 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_khuyenmaiMouseClicked
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        KhuyenMai km=this.getForm();
-        int row=tb_khuyenmai.getSelectedRow();
-        String ma=tb_khuyenmai.getValueAt(row, 0).toString();
+        KhuyenMai km = this.getForm();
+        int row = tb_khuyenmai.getSelectedRow();
+        String ma = tb_khuyenmai.getValueAt(row, 0).toString();
         this.khuyenMaiService.update(km, getId(ma));
         this.loadTable(this.khuyenMaiService.read());
     }//GEN-LAST:event_btn_updateActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+    private void txt_timkiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_timkiemKeyReleased
+        String id = txt_timkiem.getText().trim();
+        if (id == null) {
+            this.loadTable(this.khuyenMaiService.read());
+        } else {
+            this.loadTable(this.khuyenMaiService.timKiem(id));
+        }
+    }//GEN-LAST:event_txt_timkiemKeyReleased
 
-    private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {
+    private void cbb_locttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_locttActionPerformed
+        int index = cbb_loctt.getSelectedIndex();
+        switch (index) {
+            case 0 ->
+                this.loadTable(this.khuyenMaiService.read());
+            case 1 ->
+                this.loadTable(this.khuyenMaiService.trangThai(String.valueOf(0)));
+            default ->
+                this.loadTable(this.khuyenMaiService.trangThai(String.valueOf(1)));
+        }
+    }//GEN-LAST:event_cbb_locttActionPerformed
 
-    }
+    private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
+        this.newForm();
+    }//GEN-LAST:event_btn_newActionPerformed
 
     /**
      * @param args the command line arguments
@@ -503,12 +548,12 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbb_hinhthuc;
+    private javax.swing.JComboBox<String> cbb_lochinhthuc;
+    private javax.swing.JComboBox<String> cbb_loctt;
     private javax.swing.JComboBox<String> cbb_trangthai;
     private com.toedter.calendar.JDateChooser dsc_ngaybatdau;
     private com.toedter.calendar.JDateChooser dsc_ngayketthuc;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

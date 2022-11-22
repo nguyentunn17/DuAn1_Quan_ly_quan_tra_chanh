@@ -10,4 +10,6 @@ public interface IKhuyenMaiRepository {
     void create(KhuyenMai km);
 
     void update(KhuyenMai km, String id);
+
+    ArrayList<KhuyenMai> timKiem(String id);
 }

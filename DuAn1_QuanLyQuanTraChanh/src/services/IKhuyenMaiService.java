@@ -10,4 +10,9 @@ public interface IKhuyenMaiService {
     void create(KhuyenMai km);
 
     void update(KhuyenMai km, String id);
+
+    ArrayList<KhuyenMai> timKiem(String id);
+
+    ArrayList<KhuyenMai> trangThai(String id);
+
 }

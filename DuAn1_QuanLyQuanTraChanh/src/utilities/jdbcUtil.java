@@ -5,7 +5,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 public class jdbcUtil {
 
     private static final String USERNAME = "sa";
