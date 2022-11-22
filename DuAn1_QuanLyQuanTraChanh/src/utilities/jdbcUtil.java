@@ -15,6 +15,7 @@ public class jdbcUtil {
     private static final boolean USING_SSL = true;
     
     private static String CONNECT_STRING;
+    ///TU
     
     static {
         try {
