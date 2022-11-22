@@ -8,7 +8,7 @@ package services.impl;
 import domainmodels.NhanVien;
 import domainmodels.NhanVienVMD;
 import java.util.ArrayList;
-import repositories.QLNVRepo;
+import repositories.impl.QLNVRepo;
 import services.QLNVServices;
 
 /**

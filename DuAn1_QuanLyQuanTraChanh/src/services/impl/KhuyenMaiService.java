@@ -44,4 +44,9 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         }
         return list;
     }
+
+    @Override
+    public void delete(String id) {
+        this.khuyenMaiRepository.delete(id);
+    }
 }

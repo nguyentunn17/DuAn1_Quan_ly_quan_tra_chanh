@@ -12,4 +12,6 @@ public interface IKhuyenMaiRepository {
     void update(KhuyenMai km, String id);
 
     ArrayList<KhuyenMai> timKiem(String id);
+
+    void delete(String id);
 }

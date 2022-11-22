@@ -114,4 +114,18 @@ public class KhuyenMaiRepository implements IKhuyenMaiRepository {
         return listkm;
     }
 
+    @Override
+    public void delete(String id) {
+        try {
+            Connection conn = utilities.jdbcUtil.getConnection();
+            String query = "DELETE FROM KHUYENMAI WHERE ID=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setObject(1, id);
+            ps.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(KhuyenMaiRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }

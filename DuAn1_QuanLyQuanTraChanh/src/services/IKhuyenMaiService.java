@@ -15,4 +15,6 @@ public interface IKhuyenMaiService {
 
     ArrayList<KhuyenMai> trangThai(String id);
 
+    void delete(String id);
+
 }
