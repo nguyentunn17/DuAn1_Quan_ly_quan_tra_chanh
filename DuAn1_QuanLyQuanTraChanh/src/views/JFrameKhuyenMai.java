@@ -1,6 +1,7 @@
 package views;
 
 import domainmodels.KhuyenMai;
+import domainmodels.SanPham;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,21 +10,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import services.IKhuyenMaiService;
+import services.ISanPhamService;
 import services.impl.KhuyenMaiService;
+import services.impl.SanPhamService;
 
 public class JFrameKhuyenMai extends javax.swing.JFrame {
 
     private final IKhuyenMaiService khuyenMaiService;
+    private final ISanPhamService sanPhamService;
     DefaultTableModel dtm;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public JFrameKhuyenMai() {
         initComponents();
         this.khuyenMaiService = new KhuyenMaiService();
-        this.loadTable(this.khuyenMaiService.read());
+        this.sanPhamService= new SanPhamService();
+        this.loadTableKM(this.khuyenMaiService.read());
+        this.loadTableSP(this.sanPhamService.read());
     }
 
-    private void loadTable(ArrayList<KhuyenMai> list) {
+    private void loadTableKM(ArrayList<KhuyenMai> list) {
         dtm = (DefaultTableModel) tb_khuyenmai.getModel();
         dtm.setRowCount(0);
         for (KhuyenMai khuyenMai : list) {
@@ -35,6 +41,16 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
                 khuyenMai.getNgayBatDau(),
                 khuyenMai.getNgayKetThuc(),
                 khuyenMai.getTrangThai() == 0 ? "Hoạt động" : "Ngừng hoạt động"
+            };
+            dtm.addRow(rowdata);
+        }
+    }
+    private void loadTableSP(ArrayList<SanPham> list) {
+        dtm = (DefaultTableModel) tb_sanpham.getModel();
+        dtm.setRowCount(0);
+        for (SanPham sp : list) {
+            Object[] rowdata = {
+                sp.getMa(),sp.getTen()
             };
             dtm.addRow(rowdata);
         }
@@ -459,7 +475,7 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
         KhuyenMai km = this.getForm();
         this.khuyenMaiService.create(km);
-        this.loadTable(this.khuyenMaiService.read());
+        this.loadTableKM(this.khuyenMaiService.read());
     }//GEN-LAST:event_btn_saveActionPerformed
 
     private void tb_khuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_khuyenmaiMouseClicked
@@ -490,15 +506,15 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
         int row = tb_khuyenmai.getSelectedRow();
         String ma = tb_khuyenmai.getValueAt(row, 0).toString();
         this.khuyenMaiService.update(km, getId(ma));
-        this.loadTable(this.khuyenMaiService.read());
+        this.loadTableKM(this.khuyenMaiService.read());
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void txt_timkiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_timkiemKeyReleased
         String id = txt_timkiem.getText().trim();
         if (id.equals("")) {
-            this.loadTable(this.khuyenMaiService.read());
+            this.loadTableKM(this.khuyenMaiService.read());
         } else {
-            this.loadTable(this.khuyenMaiService.timKiem(id));
+            this.loadTableKM(this.khuyenMaiService.timKiem(id));
         }
     }//GEN-LAST:event_txt_timkiemKeyReleased
 
@@ -506,11 +522,11 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
         int index = cbb_loctt.getSelectedIndex();
         switch (index) {
             case 0 ->
-                this.loadTable(this.khuyenMaiService.read());
+                this.loadTableKM(this.khuyenMaiService.read());
             case 1 ->
-                this.loadTable(this.khuyenMaiService.trangThai(String.valueOf(0)));
+                this.loadTableKM(this.khuyenMaiService.trangThai(String.valueOf(0)));
             default ->
-                this.loadTable(this.khuyenMaiService.trangThai(String.valueOf(1)));
+                this.loadTableKM(this.khuyenMaiService.trangThai(String.valueOf(1)));
         }
     }//GEN-LAST:event_cbb_locttActionPerformed
 
@@ -522,7 +538,7 @@ public class JFrameKhuyenMai extends javax.swing.JFrame {
         int row=tb_khuyenmai.getSelectedRow();
         String ma=tb_khuyenmai.getValueAt(row, 0).toString();
         this.khuyenMaiService.delete(getId(ma));
-        this.loadTable(this.khuyenMaiService.read());
+        this.loadTableKM(this.khuyenMaiService.read());
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     /**

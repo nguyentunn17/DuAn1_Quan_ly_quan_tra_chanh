@@ -189,7 +189,11 @@ CREATE TABLE SANPHAMCHITIET(
 	DonGiaNhap DECIMAL(20,0) DEFAULT 0,
 	DonViTinh NVARCHAR(20),
 	MoTa NVARCHAR(50) DEFAULT NULL,
+<<<<<<< HEAD
+	Anh NVARCHAR(50) DEFAULT NULL,
+=======
 	Anh nvarchar(50) NULL,
+>>>>>>> origin/main
 	TrangThai INT DEFAULT 0,
 )
 GO
